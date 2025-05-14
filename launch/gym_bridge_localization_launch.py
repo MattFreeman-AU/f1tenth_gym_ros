@@ -50,24 +50,24 @@ def generate_launch_description():
         name='rviz',
         arguments=['-d', os.path.join(get_package_share_directory('f1tenth_gym_ros'), 'launch', 'gym_bridge.rviz')]
     )
-    map_server_node = Node(
-        package='nav2_map_server',
-        executable='map_server',
-        parameters=[{'yaml_filename': config_dict['bridge']['ros__parameters']['map_path'] + '.yaml'},
-                    {'topic': 'map'},
-                    {'frame_id': 'map'},
-                    {'output': 'screen'},
-                    {'use_sim_time': True}]
-    )
-    nav_lifecycle_node = Node(
-        package='nav2_lifecycle_manager',
-        executable='lifecycle_manager',
-        name='lifecycle_manager_localization',
-        output='screen',
-        parameters=[{'use_sim_time': True},
-                    {'autostart': True},
-                    {'node_names': ['map_server']}]
-    )
+    # map_server_node = Node(
+    #     package='nav2_map_server',
+    #     executable='map_server',
+    #     parameters=[{'yaml_filename': config_dict['bridge']['ros__parameters']['map_path'] + '.yaml'},
+    #                 {'topic': 'map'},
+    #                 {'frame_id': 'map'},
+    #                 {'output': 'screen'},
+    #                 {'use_sim_time': True}]
+    # )
+    # nav_lifecycle_node = Node(
+    #     package='nav2_lifecycle_manager',
+    #     executable='lifecycle_manager',
+    #     name='lifecycle_manager_localization',
+    #     output='screen',
+    #     parameters=[{'use_sim_time': True},
+    #                 {'autostart': True},
+    #                 {'node_names': ['map_server']}]
+    # )
     ego_robot_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -87,8 +87,8 @@ def generate_launch_description():
     # finalize
     ld.add_action(rviz_node)
     ld.add_action(bridge_node)
-    ld.add_action(nav_lifecycle_node)
-    ld.add_action(map_server_node)
+    # ld.add_action(nav_lifecycle_node)
+    # ld.add_action(map_server_node)
     ld.add_action(ego_robot_publisher)
     if has_opp:
         ld.add_action(opp_robot_publisher)
