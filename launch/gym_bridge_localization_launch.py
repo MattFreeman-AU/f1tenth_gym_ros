@@ -38,6 +38,13 @@ def generate_launch_description():
     has_opp = config_dict['bridge']['ros__parameters']['num_agent'] > 1
     teleop = config_dict['bridge']['ros__parameters']['kb_teleop']
 
+    static_tf_node = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_baselink_to_laser',
+        arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'map', 'odom']
+    )
+
     bridge_node = Node(
         package='f1tenth_gym_ros',
         executable='gym_bridge',
@@ -85,6 +92,7 @@ def generate_launch_description():
     )
 
     # finalize
+    ld.add_action(static_tf_node)
     ld.add_action(rviz_node)
     ld.add_action(bridge_node)
     # ld.add_action(nav_lifecycle_node)

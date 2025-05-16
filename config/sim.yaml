@@ -42,16 +42,16 @@ bridge:
     scan_beams: 1079 # 1080
 
     # map parameters
-    map_path: '/home/capstone/sim_ws/src/f1tenth_gym_ros/maps/U_GP'
+    map_path: '/home/f1jetson/sim_ws/src/f1tenth_gym_ros/maps/U_GP'
     map_img_ext: '.pgm'
 
     # opponent parameters
     num_agent: 1
 
     # ego starting pose on map
-    sx: 0.0
-    sy: 0.0
-    stheta: 0.0
+    sx: 4.0
+    sy: -4.9
+    stheta: 2.8
 
     # opp starting pose on map
     sx1: 2.0

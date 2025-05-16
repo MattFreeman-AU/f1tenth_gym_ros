@@ -84,12 +84,20 @@ def generate_launch_description():
         remappings=[('/robot_description', 'opp_robot_description')]
     )
 
+    static_tf_node = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_baselink_to_laser',
+        arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'map', 'odom']
+    )
+
     # finalize
     ld.add_action(rviz_node)
     ld.add_action(bridge_node)
     ld.add_action(nav_lifecycle_node)
     ld.add_action(map_server_node)
     ld.add_action(ego_robot_publisher)
+    ld.add_action(static_tf_node)
     if has_opp:
         ld.add_action(opp_robot_publisher)
 
