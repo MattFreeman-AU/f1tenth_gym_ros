@@ -78,10 +78,39 @@ class GymBridge(Node):
             raise ValueError('num_agents should be an int.')
 
         # env backend
+        # self.env = gym.make('f110_gym:f110-v0',
+        #                     map=self.get_parameter('map_path').value,
+        #                     map_ext=self.get_parameter('map_img_ext').value,
+        #                     num_agents=num_agents) 
         self.env = gym.make('f110_gym:f110-v0',
-                            map=self.get_parameter('map_path').value,
-                            map_ext=self.get_parameter('map_img_ext').value,
-                            num_agents=num_agents)
+            map=self.get_parameter('map_path').value,
+            map_ext=self.get_parameter('map_img_ext').value,
+            num_agents=num_agents,
+        )
+        params_dict = {
+            'mu': 2.0,               # increased surface grip
+            'C_Sf': 6.0,             # stronger front cornering stiffness
+            'C_Sr': 6.5,             # stronger rear cornering stiffness
+            'lf': 0.15875,
+            'lr': 0.17145,
+            'h': 0.074,
+            'm': 3.74,
+            'I': 0.04712,
+            's_min': -0.8,           # more steering range
+            's_max': 0.8,            # more steering range
+            'sv_min': -8.0,          # faster steering rate
+            'sv_max': 8.0,           # faster steering rate
+            'v_switch': 7.319,
+            'a_max': 50.0,           # more acceleration
+            'v_min': -5.0,
+            'v_max': 20.0,
+            'width': 0.31,
+            'length': 0.58
+        }
+
+
+        self.env.update_params(params_dict)
+
 
         sx = self.get_parameter('sx').value
         sy = self.get_parameter('sy').value

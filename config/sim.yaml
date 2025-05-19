@@ -39,7 +39,7 @@ bridge:
     
     # laserscan parameters
     scan_fov: 4.7
-    scan_beams: 1079 # 1080
+    scan_beams: 1080 # 1079 # 1080
 
     # map parameters
     map_path: '/home/f1jetson/sim_ws/src/particle_filter/maps/may15_GP'
@@ -54,9 +54,12 @@ bridge:
     stheta: 2.8
 
     # opp starting pose on map
-    sx: 3.2 #4
-    sy: -3.1
-    stheta: 4.55
+    sx: 3.3 #4
+    sy: -6.2
+    stheta: 4.4
+    # sx: 0.6 #4
+    # sy: 0.02
+    # stheta: 0.0
 
     # teleop
     kb_teleop: True
